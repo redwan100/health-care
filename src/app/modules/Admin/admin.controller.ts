@@ -10,9 +10,29 @@ const getAllAdmin = async (req: Request, res: Response) => {
     const options = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
 
     const result = await AdminService.getAllAdminFromDB(filteredData, options);
+
     res.status(httpStatus.OK).json({
       success: true,
       message: "successfully retrieved all admins",
+      meta: result.meta,
+      data: result.data,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err.name || "something went wrong",
+    });
+  }
+};
+
+const getSingleAdmin = async (req: Request, res: Response) => {
+  try {
+    const { adminId } = req.params;
+    const result = await AdminService.getSingleAdminFromDB(adminId);
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "successfully retrieved admin",
       data: result,
     });
   } catch (err: any) {
@@ -25,4 +45,5 @@ const getAllAdmin = async (req: Request, res: Response) => {
 
 export const AdminController = {
   getAllAdmin,
+  getSingleAdmin,
 };

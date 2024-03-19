@@ -7,7 +7,7 @@ const getAllAdminFromDB = async (params: any, options: any) => {
   const andConditions: Prisma.AdminWhereInput[] = [];
 
   const { searchTerm, ...filteredData } = params;
-  const { limit, skip } = paginationHelper.calculatePagination(options);
+  const { limit, skip, page } = paginationHelper.calculatePagination(options);
 
   if (params.searchTerm) {
     andConditions.push({
@@ -45,9 +45,32 @@ const getAllAdminFromDB = async (params: any, options: any) => {
             createdAt: "desc",
           },
   });
+
+  const total = await prisma.admin.count({
+    where: whereCondition,
+  });
+
+  return {
+    meta: {
+      page,
+      limit,
+      total,
+    },
+    data: result,
+  };
+};
+
+const getSingleAdminFromDB = async (id:string) => {
+  const result = await prisma.admin.findUnique({
+    where: {
+      id: id,
+    },
+  });
+
   return result;
 };
 
 export const AdminService = {
   getAllAdminFromDB,
+  getSingleAdminFromDB,
 };
