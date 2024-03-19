@@ -30,6 +30,8 @@ const createAdminIntoDB = async (payload: any) => {
   return result;
 };
 
+
+
 export const userService = {
   createAdminIntoDB,
 };

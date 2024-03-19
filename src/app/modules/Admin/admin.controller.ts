@@ -20,7 +20,8 @@ const getAllAdmin = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(httpStatus.BAD_REQUEST).json({
       success: false,
-      message: err.name || "something went wrong",
+      message: err?.name || "something went wrong",
+      error: err,
     });
   }
 };
@@ -38,7 +39,8 @@ const getSingleAdmin = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(httpStatus.BAD_REQUEST).json({
       success: false,
-      message: err.name || "something went wrong",
+      message: err?.name || "something went wrong",
+      error: err,
     });
   }
 };
@@ -57,7 +59,46 @@ const updateAdmin = async (req: Request, res: Response) => {
   } catch (err: any) {
     res.status(httpStatus.BAD_REQUEST).json({
       success: false,
-      message: err.name || "something went wrong",
+      message: err?.name || "something went wrong",
+      error: err,
+    });
+  }
+};
+
+const deleteAdmin = async (req: Request, res: Response) => {
+  try {
+    const { adminId } = req.params;
+    const result = await AdminService.deleteAdminFromDB(adminId);
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "successfully deleted admin",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err?.name || "something went wrong",
+      error: err,
+    });
+  }
+};
+
+const softDeleteAdmin = async (req: Request, res: Response) => {
+  try {
+    const { adminId } = req.params;
+    const result = await AdminService.softDeleteAdminFromDB(adminId);
+
+    res.status(httpStatus.OK).json({
+      success: true,
+      message: "successfully deleted admin",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err?.name || "something went wrong",
+      error: err,
     });
   }
 };
@@ -66,4 +107,6 @@ export const AdminController = {
   getAllAdmin,
   getSingleAdmin,
   updateAdmin,
+  deleteAdmin,
+  softDeleteAdmin,
 };
