@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Redwan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add zod
+  C:\Program Files\nodejs\node.exe C:\Users\Redwan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add @types/jsonwebtoken -D
 
 PATH: 
   C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Redwan\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\PowerShell\7\;C:\Program Files\PowerShell\7-preview\preview;C:\Program Files\PostgreSQL\16\bin;C:\Users\Redwan\.console-ninja\.bin;C:\Users\Redwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Redwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Redwan\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Redwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Redwan\AppData\Local\Programs\oh-my-posh\bin;C:\Users\Redwan\AppData\Local\Programs\Hyper\resources\bin;C:\Users\Redwan\appdata\local\programs\hyper\resources\bin;C:\Users\Redwan\AppData\Roaming\npm;C:\Users\Redwan\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Redwan\AppData\Local\Programs\mongosh\;C:\Program Files\MongoDB\Server\6.0\bin;
@@ -14,8 +14,7 @@ Platform:
   win32 x64
 
 Trace: 
-  Error: getaddrinfo ENOTFOUND registry.yarnpkg.com
-      at GetAddrInfoReqWrap.onlookup [as oncomplete] (node:dns:108:26)
+  Error: EPERM: operation not permitted, unlink 'C:\Programming Hero\level-2\DOCTOR-APPOINTMENT\HEALTHCARE-SERVER\node_modules\prisma\engines\efd2449663b3d73d637ea1fd226bafbcf45b3102\query_engine-windows.dll.node'
 
 npm manifest: 
   {
@@ -43,7 +42,8 @@ npm manifest:
       "cors": "^2.8.5",
       "express": "^4.18.3",
       "http-status": "^1.7.4",
-      "morgan": "^1.10.0"
+      "morgan": "^1.10.0",
+      "zod": "^3.22.4"
     }
   }
 
@@ -1433,3 +1433,8 @@ Lockfile:
     version "3.1.1"
     resolved "https://registry.npmjs.org/yn/-/yn-3.1.1.tgz"
     integrity sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==
+  
+  zod@^3.22.4:
+    version "3.22.4"
+    resolved "https://registry.yarnpkg.com/zod/-/zod-3.22.4.tgz#f31c3a9386f61b1f228af56faa9255e845cf3fff"
+    integrity sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==
