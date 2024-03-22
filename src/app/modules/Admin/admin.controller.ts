@@ -5,7 +5,7 @@ import sendResponse from "../../../shared/sendResponse";
 import { adminFilterableFields } from "./admin.constant";
 import { AdminService } from "./admin.service";
 
-const getAllAdmin = async (req: Request, res: Response, next:NextFunction) => {
+const getAllAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const filteredData = pick(req.query, adminFilterableFields);
     const options = pick(req.query, ["limit", "page", "sortBy", "sortOrder"]);
@@ -20,11 +20,15 @@ const getAllAdmin = async (req: Request, res: Response, next:NextFunction) => {
       data: result.data,
     });
   } catch (err: any) {
-   next(err)
+    next(err);
   }
 };
 
-const getSingleAdmin = async (req: Request, res: Response, next:NextFunction) => {
+const getSingleAdmin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { adminId } = req.params;
     const result = await AdminService.getSingleAdminFromDB(adminId);
@@ -40,7 +44,7 @@ const getSingleAdmin = async (req: Request, res: Response, next:NextFunction) =>
   }
 };
 
-const updateAdmin = async (req: Request, res: Response, next:NextFunction) => {
+const updateAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { adminId } = req.params;
     const data = req.body;
@@ -53,11 +57,11 @@ const updateAdmin = async (req: Request, res: Response, next:NextFunction) => {
       data: result,
     });
   } catch (err: any) {
-  next(err);
+    next(err);
   }
 };
 
-const deleteAdmin = async (req: Request, res: Response, next:NextFunction) => {
+const deleteAdmin = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const { adminId } = req.params;
     const result = await AdminService.deleteAdminFromDB(adminId);
@@ -69,11 +73,15 @@ const deleteAdmin = async (req: Request, res: Response, next:NextFunction) => {
       data: result,
     });
   } catch (err: any) {
-   next(err);
+    next(err);
   }
 };
 
-const softDeleteAdmin = async (req: Request, res: Response, next:NextFunction) => {
+const softDeleteAdmin = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const { adminId } = req.params;
     const result = await AdminService.softDeleteAdminFromDB(adminId);
