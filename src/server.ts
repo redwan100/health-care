@@ -1,12 +1,11 @@
 import { Server } from "http";
 import app from "./app";
-
-const port = 3000;
+import config from "./config";
 
 async function main() {
   let server: Server;
-  server = app.listen(port, () => {
-    console.log(`App is listening on port ${port} ✅`);
+  server = app.listen(config.port, () => {
+    console.log(`App is listening on port ${config.port} ✅`);
   });
 }
 

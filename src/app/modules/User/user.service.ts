@@ -4,6 +4,8 @@ import bcrypt from "bcrypt";
 import prisma from "../../../shared/prisma";
 
 const createAdminIntoDB = async (payload: any) => {
+  console.log(payload);
+
   const hashedPassword = await bcrypt.hash(payload.password, 10);
 
   const userData = {
@@ -29,8 +31,6 @@ const createAdminIntoDB = async (payload: any) => {
 
   return result;
 };
-
-
 
 export const userService = {
   createAdminIntoDB,
