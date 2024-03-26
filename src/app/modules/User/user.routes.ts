@@ -8,7 +8,7 @@ import { UserValidation } from "./user.validation";
 const router = Router();
 
 router.post(
-  "/",
+  "/create-admin",
 
   fileUploader.upload.single("file"),
 
