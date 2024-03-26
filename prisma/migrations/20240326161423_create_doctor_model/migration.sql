@@ -1,5 +1,5 @@
 -- CreateEnum
-CREATE TYPE "Genter" AS ENUM ('MALE', 'FEMALE');
+CREATE TYPE "Gender" AS ENUM ('MALE', 'FEMALE');
 
 -- CreateTable
 CREATE TABLE "doctors" (
@@ -11,7 +11,7 @@ CREATE TABLE "doctors" (
     "address" TEXT,
     "registrationNumber" TEXT NOT NULL,
     "experience" INTEGER NOT NULL DEFAULT 0,
-    "gender" "Genter" NOT NULL,
+    "gender" "Gender" NOT NULL,
     "appointmentFee" INTEGER NOT NULL,
     "qualification" TEXT NOT NULL,
     "currentWorkingPlace" TEXT NOT NULL,

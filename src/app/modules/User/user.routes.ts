@@ -25,4 +25,22 @@ router.post(
   userController.createAdmin
 );
 
+router.post(
+  "/create-doctor",
+
+  fileUploader.upload.single("file"),
+
+  (req: Request, res: Response, next: NextFunction) => {
+    const data = UserValidation.createAdminValidationSchema.parse(
+      JSON.parse(req.body.data)
+    );
+
+    req.body = data;
+    next();
+  },
+
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+  userController.createAdmin
+);
+
 export const userRoute = router;
