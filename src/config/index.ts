@@ -18,4 +18,10 @@ export default {
   reset_pass_link: process.env.RESET_PASS_LINK,
   email_sender_pass: process.env.EMAIL_SENDER_PASS,
   email: process.env.EMAIL,
+
+  fileUpload: {
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET,
+  },
 };

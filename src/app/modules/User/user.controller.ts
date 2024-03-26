@@ -3,8 +3,9 @@ import httpStatus from "http-status";
 import { userService } from "./user.service";
 
 const createAdmin: RequestHandler = async (req, res) => {
+  
   try {
-    const result = await userService.createAdminIntoDB(req.body);
+    const result = await userService.createAdminIntoDB(req);
     res.status(httpStatus.CREATED).json({
       success: true,
       message: "admin created successfully",
