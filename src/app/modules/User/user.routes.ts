@@ -31,7 +31,7 @@ router.post(
   fileUploader.upload.single("file"),
 
   (req: Request, res: Response, next: NextFunction) => {
-    const data = UserValidation.createAdminValidationSchema.parse(
+    const data = UserValidation.createDoctorValidationSchema.parse(
       JSON.parse(req.body.data)
     );
 
@@ -40,7 +40,7 @@ router.post(
   },
 
   auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
-  userController.createAdmin
+  userController.createDoctor
 );
 
 export const userRoute = router;

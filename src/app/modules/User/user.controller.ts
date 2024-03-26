@@ -19,6 +19,25 @@ const createAdmin: RequestHandler = async (req, res) => {
   }
 };
 
+
+const createDoctor: RequestHandler = async (req, res) => {
+  try {
+    const result = await userService.createDoctorIntoDB(req);
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: "doctor created successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err.name || "something went wrong",
+      error: err,
+    });
+  }
+};
+
 export const userController = {
   createAdmin,
+  createDoctor,
 };

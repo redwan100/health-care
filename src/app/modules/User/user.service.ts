@@ -42,6 +42,44 @@ const createAdminIntoDB = async (req: any) => {
   return result;
 };
 
+const createDoctorIntoDB = async (req: any) => {
+  // *if create any problem remove TUploadedFile type
+  const file: TUploadedFile = req.file;
+  const doctorData = req.body;
+  if (file) {
+    const cloudinary = await fileUploader.uploadToCloudinary(req.file);
+    req.body.doctor.profilePhoto = cloudinary?.secure_url;
+  }
+
+  const hashedPassword = await bcrypt.hash(
+    doctorData.password,
+    Number(config.salt_round)
+  );
+
+  const userData = {
+    email: doctorData.doctor.email,
+    password: hashedPassword,
+    role: UserRole.DOCTOR,
+  };
+
+  const result = await prisma.$transaction(async (transactionClient) => {
+    await transactionClient.user.create({
+      data: userData,
+    });
+
+    const createdDoctorData = await transactionClient.doctor.create({
+      data: doctorData.doctor,
+    });
+
+    return {
+      createdDoctorData,
+    };
+  });
+
+  return result;
+};
+
 export const userService = {
   createAdminIntoDB,
+  createDoctorIntoDB,
 };
