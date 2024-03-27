@@ -1,4 +1,4 @@
-import { NextFunction, Request, RequestHandler, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import httpStatus from "http-status";
 import catchAsync from "../../../shared/catchAsync";
 import pick from "../../../shared/pick";
@@ -6,43 +6,56 @@ import sendResponse from "../../../shared/sendResponse";
 import { userFilterableFields } from "./user.constant";
 import { userService } from "./user.service";
 
-const createAdmin: RequestHandler = catchAsync(
-  async (req: Request, res: Response) => {
-    try {
-      const result = await userService.createAdminIntoDB(req);
-      res.status(httpStatus.CREATED).json({
-        success: true,
-        message: "admin created successfully",
-        data: result,
-      });
-    } catch (err: any) {
-      res.status(httpStatus.BAD_REQUEST).json({
-        success: false,
-        message: err.name || "something went wrong",
-        error: err,
-      });
-    }
+const createAdmin = catchAsync(async (req: Request, res: Response) => {
+  try {
+    const result = await userService.createAdminIntoDB(req);
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: "admin created successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err.name || "something went wrong",
+      error: err,
+    });
   }
-);
+});
 
-const createDoctor: RequestHandler = catchAsync(
-  async (req: Request, res: Response) => {
-    try {
-      const result = await userService.createDoctorIntoDB(req);
-      res.status(httpStatus.CREATED).json({
-        success: true,
-        message: "doctor created successfully",
-        data: result,
-      });
-    } catch (err: any) {
-      res.status(httpStatus.BAD_REQUEST).json({
-        success: false,
-        message: err.name || "something went wrong",
-        error: err,
-      });
-    }
+const createDoctor = catchAsync(async (req: Request, res: Response) => {
+  try {
+    const result = await userService.createPatientIntoDB(req);
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: "doctor created successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err.name || "something went wrong",
+      error: err,
+    });
   }
-);
+});
+
+const createPatient = catchAsync(async (req: Request, res: Response) => {
+  try {
+    const result = await userService.createPatientIntoDB(req);
+    res.status(httpStatus.CREATED).json({
+      success: true,
+      message: "patient created successfully",
+      data: result,
+    });
+  } catch (err: any) {
+    res.status(httpStatus.BAD_REQUEST).json({
+      success: false,
+      message: err.name || "something went wrong",
+      error: err,
+    });
+  }
+});
 
 const getAllUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
@@ -68,5 +81,6 @@ const getAllUser = catchAsync(
 export const userController = {
   createAdmin,
   createDoctor,
+  createPatient,
   getAllUser,
 };
