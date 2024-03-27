@@ -7,7 +7,11 @@ import { UserValidation } from "./user.validation";
 
 const router = Router();
 
-router.get("/", userController.getAllUser);
+router.get(
+  "/",
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+  userController.getAllUser
+);
 
 router.post(
   "/create-admin",
@@ -60,6 +64,12 @@ router.post(
   },
 
   userController.createPatient
+);
+
+router.patch(
+  "/:id/status",
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+  userController.changeProfileStatus
 );
 
 export const userRoute = router;

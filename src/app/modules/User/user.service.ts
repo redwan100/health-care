@@ -1,4 +1,4 @@
-import { Prisma, UserRole } from "@prisma/client";
+import { Prisma, UserRole, UserStatus } from "@prisma/client";
 import bcrypt from "bcrypt";
 import config from "../../../config";
 import { fileUploader } from "../../../helpers/fileUploader";
@@ -8,6 +8,7 @@ import { TUploadedFile } from "../../types/fileUpload";
 import { TPaginationOptions } from "../../types/pagination";
 import { userSearchAbleFields } from "./user.constant";
 
+// ! CREATE A ADMIN
 const createAdminIntoDB = async (req: any) => {
   // *if create any problem remove TUploadedFile type
   const file: TUploadedFile = req.file;
@@ -82,6 +83,7 @@ const createDoctorIntoDB = async (req: any) => {
   return result;
 };
 
+// ! CREATE A PATIENT
 const createPatientIntoDB = async (req: any) => {
   // *if create any problem remove TUploadedFile type
   const file: TUploadedFile = req.file;
@@ -161,6 +163,18 @@ const getAllUserFromDB = async (params: any, options: TPaginationOptions) => {
         : {
             createdAt: "desc",
           },
+    select: {
+      id: true,
+      email: true,
+      role: true,
+      needPasswordChange: true,
+      status: true,
+      createdAt: true,
+      updatedAt: true,
+      admin: true,
+      doctor: true,
+      patient: true,
+    },
   });
 
   const total = await prisma.user.count({
@@ -177,9 +191,24 @@ const getAllUserFromDB = async (params: any, options: TPaginationOptions) => {
   };
 };
 
+const changeProfileStatusIntoDB = async (id: string, payload: UserStatus) => {
+  await prisma.user.findUniqueOrThrow({
+    where: { id },
+  });
+  const updated = await prisma.user.update({
+    where: {
+      id,
+    },
+    data: payload,
+  });
+
+  return updated;
+};
+
 export const userService = {
   createAdminIntoDB,
   createDoctorIntoDB,
   createPatientIntoDB,
   getAllUserFromDB,
+  changeProfileStatusIntoDB,
 };
