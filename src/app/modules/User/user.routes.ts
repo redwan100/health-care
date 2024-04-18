@@ -37,6 +37,7 @@ router.post(
   fileUploader.upload.single("file"),
 
   (req: Request, res: Response, next: NextFunction) => {
+   
     const data = UserValidation.createDoctorValidationSchema.parse(
       JSON.parse(req.body.data)
     );

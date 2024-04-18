@@ -50,6 +50,7 @@ const createAdminIntoDB = async (req: any) => {
 
 const createDoctorIntoDB = async (req: any) => {
   // *if create any problem remove TUploadedFile type
+  
   const file: TUploadedFile = req.file;
   const doctorData = req.body;
   if (file) {
