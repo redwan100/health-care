@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\Redwan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add ts-node-dev -D
+  C:\Program Files\nodejs\node.exe C:\Users\Redwan\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add uuid
 
 PATH: 
   C:\Program Files (x86)\Microsoft SDKs\Azure\CLI2\wbin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Users\Redwan\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Program Files\PowerShell\7\;C:\Program Files\PowerShell\7-preview\preview;C:\Program Files\PostgreSQL\16\bin;C:\Users\Redwan\.console-ninja\.bin;C:\Users\Redwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Redwan\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\Redwan\AppData\Local\JetBrains\Toolbox\scripts;C:\Users\Redwan\AppData\Local\Microsoft\WindowsApps;C:\Users\Redwan\AppData\Local\Programs\oh-my-posh\bin;C:\Users\Redwan\AppData\Local\Programs\Hyper\resources\bin;C:\Users\Redwan\appdata\local\programs\hyper\resources\bin;C:\Users\Redwan\AppData\Roaming\npm;C:\Users\Redwan\AppData\Roaming\nvm;C:\Program Files\nodejs;C:\Users\Redwan\AppData\Local\Programs\mongosh\;C:\Program Files\MongoDB\Server\6.0\bin;
@@ -43,8 +43,10 @@ npm manifest:
     "dependencies": {
       "@prisma/client": "^5.11.0",
       "bcrypt": "^5.1.1",
+      "cloudinary": "^2.0.3",
       "cookie-parser": "^1.4.6",
       "cors": "^2.8.5",
+      "date-fns": "^3.6.0",
       "dotenv": "^16.4.5",
       "express": "^4.18.3",
       "http-status": "^1.7.4",
@@ -490,6 +492,14 @@ Lockfile:
     resolved "https://registry.npmjs.org/chownr/-/chownr-2.0.0.tgz"
     integrity sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==
   
+  cloudinary@^2.0.3:
+    version "2.0.3"
+    resolved "https://registry.yarnpkg.com/cloudinary/-/cloudinary-2.0.3.tgz#10a0b0239120aec26655fe91fef67ce68ae0fcc9"
+    integrity sha512-2JPxAUuV4iHwiW4ATSOZvii6+BhhKI9+9KscgUkxJPKa6V6wOnZJHlYyovBGrrIbIgEdmGSZgqEsLfD0wWBhBg==
+    dependencies:
+      lodash "^4.17.21"
+      q "^1.5.1"
+  
   color-support@^1.1.2:
     version "1.1.3"
     resolved "https://registry.npmjs.org/color-support/-/color-support-1.1.3.tgz"
@@ -567,6 +577,11 @@ Lockfile:
     version "1.1.1"
     resolved "https://registry.npmjs.org/create-require/-/create-require-1.1.1.tgz"
     integrity sha512-dcKFX3jn0MpIaXjisoRvexIJVEKzaq7z2rZKxf+MSr9TkdmHmsU4m2lcLojrj/FHl8mk5VxMmYA+ftRkP/3oKQ==
+  
+  date-fns@^3.6.0:
+    version "3.6.0"
+    resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-3.6.0.tgz#f20ca4fe94f8b754951b24240676e8618c0206bf"
+    integrity sha512-fRHTG8g/Gif+kSh50gaGEdToemgfj74aRX3swtiouboip5JDLAyDE9F11nHMIcvOaXeOC6D7SpNhi7uFyB7Uww==
   
   debug@2.6.9:
     version "2.6.9"
@@ -1000,6 +1015,11 @@ Lockfile:
     resolved "https://registry.npmjs.org/lodash.once/-/lodash.once-4.1.1.tgz"
     integrity sha512-Sb487aTOCr9drQVL8pIxOzVhafOjZN9UU54hiN8PU3uAiSV7lx1yYNpbNmex2PK6dSJoNTSJUUswT651yww3Mg==
   
+  lodash@^4.17.21:
+    version "4.17.21"
+    resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+    integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+  
   lru-cache@^6.0.0:
     version "6.0.0"
     resolved "https://registry.npmjs.org/lru-cache/-/lru-cache-6.0.0.tgz"
@@ -1258,6 +1278,11 @@ Lockfile:
     dependencies:
       forwarded "0.2.0"
       ipaddr.js "1.9.1"
+  
+  q@^1.5.1:
+    version "1.5.1"
+    resolved "https://registry.yarnpkg.com/q/-/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
+    integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
   
   qs@6.11.0:
     version "6.11.0"
@@ -1530,7 +1555,7 @@ Lockfile:
   
   ts-node-dev@^2.0.0:
     version "2.0.0"
-    resolved "https://registry.npmjs.org/ts-node-dev/-/ts-node-dev-2.0.0.tgz"
+    resolved "https://registry.yarnpkg.com/ts-node-dev/-/ts-node-dev-2.0.0.tgz#bdd53e17ab3b5d822ef519928dc6b4a7e0f13065"
     integrity sha512-ywMrhCfH6M75yftYvrvNarLEY+SUXtUvU8/0Z6llrHQVBx12GiFk5sStF8UdfE/yfzk9IAq7O5EEbTQsxlBI8w==
     dependencies:
       chokidar "^3.5.1"
