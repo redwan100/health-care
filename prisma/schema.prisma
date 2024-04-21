@@ -226,6 +226,7 @@ model Appointment {
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   doctorSchedules DoctorSchedules?
+  payment         Payment?
 
   @@map("appointments")
 }
@@ -240,4 +241,18 @@ enum AppointmentStatus {
 enum paymentStatus {
   PAID
   UNPAID
+}
+
+model Payment {
+  id                 String        @id @default(uuid())
+  appointmentId      String        @unique
+  appointment        Appointment   @relation(fields: [appointmentId], references: [id])
+  amount             Float
+  transactionId      String
+  status             paymentStatus @default(UNPAID)
+  paymentGatewayData Json?
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+
+  @@map("payments")
 }
