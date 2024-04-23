@@ -24,4 +24,14 @@ export default {
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   },
+
+  payment: {
+    store_id: process.env.STORE_ID,
+    store_pass: process.env.STORE_PASS,
+    payment_success_url: process.env.SUCCESS_URL,
+    payment_failed_url: process.env.FAILED_URL,
+    payment_cancel_url: process.env.CANCEL_URL,
+    ssl_payment_url: process.env.SSL_PAYMENT_URL,
+    validation_url: process.env.VALIDATION_URL,
+  },
 };
