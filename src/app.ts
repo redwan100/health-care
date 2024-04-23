@@ -1,10 +1,12 @@
+import cookieParser from "cookie-parser";
 import cors from "cors";
 import express, { Application, Request, Response } from "express";
 import morgan from "morgan";
+import cron from "node-cron";
 import globalErrorHandler from "./app/middlewares/globalErrorHandler";
 import notFound from "./app/middlewares/notFound";
+import { AppointmentService } from "./app/modules/Apointment/appointment.service";
 import router from "./app/routes";
-import cookieParser from "cookie-parser";
 
 const app: Application = express();
 
@@ -20,6 +22,11 @@ app.get("/", (req: Request, res: Response) => {
   res.send({
     message: "Hello, Health care zone!",
   });
+});
+
+cron.schedule("* * * * *", () => {
+  console.log("calling");
+  AppointmentService.cancelUnpaidAppointments();
 });
 
 app.use("/api/v1", router);
