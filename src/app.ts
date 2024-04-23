@@ -18,15 +18,14 @@ app.use(cookieParser());
 
 app.use(morgan("dev"));
 
+cron.schedule("* * * * *", () => {
+  AppointmentService.cancelUnpaidAppointments();
+});
+
 app.get("/", (req: Request, res: Response) => {
   res.send({
     message: "Hello, Health care zone!",
   });
-});
-
-cron.schedule("* * * * *", () => {
-  console.log("calling");
-  AppointmentService.cancelUnpaidAppointments();
 });
 
 app.use("/api/v1", router);
