@@ -5,6 +5,12 @@ import { PrescriptionController } from "./prescription.controller";
 
 const router = Router();
 
+router.get(
+  "/",
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN),
+  PrescriptionController.getAllPrescription
+);
+
 router.post(
   "/",
 
@@ -12,9 +18,11 @@ router.post(
   PrescriptionController.createPrescription
 );
 
-router.get("/my-prescription",
+router.get(
+  "/my-prescription",
 
-auth(UserRole.PATIENT),
-PrescriptionController.getMyPrescription);
+  auth(UserRole.PATIENT),
+  PrescriptionController.getMyPrescription
+);
 
 export const PrescriptionRoutes = router;

@@ -73,6 +73,7 @@ model Doctor {
   experience          Int      @default(0)
   gender              Gender
   appointmentFee      Int
+  averageRating       Float    @default(0.0)
   qualification       String
   currentWorkingPlace String
   designation         String
