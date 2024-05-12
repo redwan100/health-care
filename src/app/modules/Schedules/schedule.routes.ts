@@ -12,7 +12,12 @@ router.post(
   ScheduleController.createSchedule
 );
 
-router.get("/", auth(UserRole.DOCTOR), ScheduleController.getSchedule);
+router.get(
+  "/",
+  auth(UserRole.ADMIN, UserRole.DOCTOR),
+  ScheduleController.getSchedule
+);
+
 router.get(
   "/:id",
   auth(UserRole.ADMIN, UserRole.SUPER_ADMIN, UserRole.DOCTOR),
