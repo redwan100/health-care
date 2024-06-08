@@ -14,7 +14,7 @@ router.post(
 
 router.get(
   "/",
-  auth(UserRole.ADMIN, UserRole.DOCTOR),
+  auth(UserRole.SUPER_ADMIN, UserRole.ADMIN, UserRole.DOCTOR),
   ScheduleController.getSchedule
 );
 

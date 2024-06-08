@@ -16,14 +16,16 @@ const createScheduleIntoDB = async (
   payload: TSchedule
 ): Promise<Schedule[]> => {
   const { startDate, endDate, startTime, endTime } = payload;
+
   const intervalTime = 30;
 
   const schedules = [];
 
-  const currentDate = new Date(startDate);
-  const lastDate = new Date(endDate);
+  const currentDate = new Date(startDate); // start date
+  const lastDate = new Date(endDate); // end date
 
   while (currentDate <= lastDate) {
+    // 09:30  ---> ['09', '30']
     const startDateTime = new Date(
       addMinutes(
         addHours(
@@ -33,6 +35,7 @@ const createScheduleIntoDB = async (
         Number(startTime.split(":")[1])
       )
     );
+
     const endDateTime = new Date(
       addMinutes(
         addHours(
@@ -44,28 +47,30 @@ const createScheduleIntoDB = async (
     );
 
     while (startDateTime < endDateTime) {
+      // const scheduleData = {
+      //     startDateTime: startDateTime,
+      //     endDateTime: addMinutes(startDateTime, interverlTime)
+      // }
+
       const s = await convertDateTime(startDateTime);
       const e = await convertDateTime(addMinutes(startDateTime, intervalTime));
 
       const scheduleData = {
-        // startDateTime: startDateTime,
-        // endDateTime: addMinutes(startDateTime, intervalTime),
         startDateTime: s,
         endDateTime: e,
       };
 
-      const isExistSchedule = await prisma.schedule.findFirst({
+      const existingSchedule = await prisma.schedule.findFirst({
         where: {
           startDateTime: scheduleData.startDateTime,
           endDateTime: scheduleData.endDateTime,
         },
       });
 
-      if (!isExistSchedule) {
+      if (!existingSchedule) {
         const result = await prisma.schedule.create({
           data: scheduleData,
         });
-
         schedules.push(result);
       }
 
